@@ -10,7 +10,11 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   }
 
   async onModuleInit() {
-    await this.$connect();
+    try {
+      await this.$connect();
+    } catch (error) {
+      console.log('Erro ao conectar ao servidor', error);
+    }
   }
 
   async enableShutdownHooks(app: INestApplication) {
