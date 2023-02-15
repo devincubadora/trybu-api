@@ -1,12 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from 'src/application/entities/user';
 import { UserRepository } from 'src/application/repositories/user-repository';
-
-interface CreateUserRequest {
-  name: string;
-  email: string;
-  password: string;
-}
+import { CreateUserBody } from 'src/infra/http/dto/create-user-body';
 
 interface CreateUserResponse {
   user: User;
@@ -15,14 +10,16 @@ interface CreateUserResponse {
 @Injectable()
 export class CreateUser {
   constructor(private userRepository: UserRepository) {}
-  async execute(request: CreateUserRequest): Promise<CreateUserResponse> {
-    const { name, email, password } = request;
+  async execute(request: CreateUserBody): Promise<CreateUserResponse> {
+    const { name, email, password, phone, whatsapp } = request;
 
     const user = await this.userRepository.create(
       new User({
         name,
         email,
         password,
+        phone,
+        whatsapp,
       }),
     );
 

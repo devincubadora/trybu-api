@@ -15,11 +15,13 @@ export class UsersContoller {
 
   @Post()
   async create(@Body() body: CreateUserBody) {
-    const { name, email, password } = body;
+    const { name, email, password, phone, whatsapp } = body;
     const { user } = await this.createUser.execute({
       name,
       email,
       password,
+      phone,
+      whatsapp,
     });
     return { user: UserViewModel.toHTTP(user) };
   }
