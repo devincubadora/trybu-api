@@ -38,7 +38,7 @@ export class AuthLogin {
     };
 
     const access_token = await this.jwtService.signAsync(payload, {
-      secret: 'at-secret',
+      secret: process.env.JWT_SECRET,
       expiresIn: 3600,
     });
 
