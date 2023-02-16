@@ -11,15 +11,7 @@ import { AuthController } from './controllers/auth.controller';
 import { UsersContoller } from './controllers/user.controller';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    JwtModule.register({
-      secretOrPrivateKey: 'Secret',
-      signOptions: {
-        expiresIn: '1d',
-      },
-    }),
-  ],
+  imports: [DatabaseModule],
   controllers: [UsersContoller, AuthController],
   providers: [
     CreateUser,
