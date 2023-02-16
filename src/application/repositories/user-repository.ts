@@ -4,6 +4,7 @@ import { User } from '../entities/user';
 export abstract class UserRepository {
   abstract create(user: User): Promise<RawUser>;
   abstract findById(userId: string): Promise<User>;
+  abstract findByEmail(email: string): Promise<User>;
   abstract getAll(): Promise<User[]>;
   abstract update(user: User): Promise<User>;
   abstract deleteBYId(userId: string): Promise<void>;
