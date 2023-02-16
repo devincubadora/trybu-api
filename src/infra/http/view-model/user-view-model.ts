@@ -9,6 +9,8 @@ export class UserViewModel {
       email: user.email,
       phone: user.phone,
       whatsapp: user.whatsapp,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
     };
   }
 }

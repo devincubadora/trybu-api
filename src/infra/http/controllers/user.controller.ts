@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { CreateUser } from 'src/application/use-cases/users/create-user';
@@ -13,6 +14,8 @@ import { DeleteUser } from 'src/application/use-cases/users/delete-user';
 import { CreateUserBody } from '../dto/create-user-body';
 import { UserViewModel } from '../view-model/user-view-model';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
+import { FindOneUserById } from 'src/application/use-cases/users/find-one-user-by-id';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('users')
@@ -21,6 +24,7 @@ export class UsersContoller {
     private createUser: CreateUser,
     private getUsers: GetUsers,
     private deleteUser: DeleteUser,
+    private findUserById: FindOneUserById,
   ) {}
 
   @Post()
@@ -44,6 +48,13 @@ export class UsersContoller {
     const { users } = await this.getUsers.execute();
 
     return { users: users.map(UserViewModel.toHTTP) };
+  }
+
+  @Get('me')
+  async me(@Req() req: Request) {
+    const user = req.user;
+    const logeedUser = await this.findUserById.execute(user['sub']);
+    return UserViewModel.toHTTP(logeedUser);
   }
 
   @Delete(':userId')

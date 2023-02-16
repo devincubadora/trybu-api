@@ -26,6 +26,7 @@ export class PrismaUserRepository implements UserRepository {
         id: userId,
       },
     });
+
     return new User(user).toJSON() as User;
   }
 

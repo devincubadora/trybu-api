@@ -9,9 +9,9 @@ interface CreateUserResponse {
 @Injectable()
 export class FindOneUserById {
   constructor(private userRepository: UserRepository) {}
-  async execute(userId: string): Promise<CreateUserResponse> {
+  async execute(userId: string): Promise<User> {
     const user = await this.userRepository.findById(userId);
 
-    return { user };
+    return user;
   }
 }

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 import { AuthLogin } from 'src/application/use-cases/auth/auth-login';
 import { CreateUser } from 'src/application/use-cases/users/create-user';
 import { DeleteUser } from 'src/application/use-cases/users/delete-user';
 import { FindOneUserByEmail } from 'src/application/use-cases/users/find-one-user-by-email';
+import { FindOneUserById } from 'src/application/use-cases/users/find-one-user-by-id';
 import { GetUsers } from 'src/application/use-cases/users/get-users';
 import { AtStarategy } from '../auth/jwt/at.strategy';
 import { DatabaseModule } from '../database/database.module';
@@ -19,6 +20,7 @@ import { UsersContoller } from './controllers/user.controller';
     DeleteUser,
     AuthLogin,
     FindOneUserByEmail,
+    FindOneUserById,
     JwtService,
     AtStarategy,
   ],
