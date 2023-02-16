@@ -20,8 +20,22 @@ export class PrismaUserRepository implements UserRepository {
     return userData;
   }
 
-  findById(userId: string): Promise<User> {
-    throw new Error('Method not implemented.');
+  async findById(userId: string): Promise<User> {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    return new User(user).toJSON() as User;
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    return user ? (new User(user).toJSON() as User) : null;
   }
 
   async getAll(): Promise<User[]> {
