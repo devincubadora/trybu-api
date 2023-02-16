@@ -12,7 +12,9 @@ datasource db {
 
 model User {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  // id        Int       @id @default(autoincrement())
   name      String
+  username  String?   @unique
   email     String    @unique
   phone     String?   @unique
   whatsapp  String?   @unique

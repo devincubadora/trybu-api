@@ -2,6 +2,7 @@ export interface UserProps {
   id?: string;
   name: string;
   email: string;
+  username?: string;
   phone?: string;
   whatsapp?: string;
   password?: string;
@@ -32,6 +33,14 @@ export class User {
 
   public get name() {
     return this.props.name;
+  }
+
+  public set username(username: string) {
+    this.props.username = username;
+  }
+
+  public get username() {
+    return this.props.username;
   }
 
   public set email(email: string) {
