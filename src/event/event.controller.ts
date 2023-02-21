@@ -5,19 +5,17 @@ import {
   Post,
   UseGuards,
   Req,
-  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { request, Request, Response } from 'express';
+import { Request } from 'express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { Event } from 'src/application/entities/event';
 import { CreateEventBody } from 'src/infra/http/dto/create-event-body';
 import { EventViewModel } from 'src/infra/http/view-model/event-view-model';
-import url, { URL } from 'url';
 import { EventService } from './event.service';
 
 @UseGuards(AuthGuard('jwt'))
@@ -50,21 +48,10 @@ export class EventController {
     @Body() body: CreateEventBody,
     @UploadedFile() file?: Express.Multer.File,
   ) {
-    // return {
-    //   file: file,
-    // };
     const user = req.user;
 
-    const {
-      title,
-      // picture,
-      startTime,
-      endTime,
-      address,
-      price,
-      contact,
-      description,
-    } = body;
+    const { title, startTime, endTime, address, price, contact, description } =
+      body;
 
     const event = await this.eventService.create(
       new Event({
@@ -80,21 +67,5 @@ export class EventController {
       }),
     );
     return { event };
-  }
-
-  @Get('file')
-  async getFile(@Res() res: Response) {
-    return { url: request.baseUrl };
-    // return {
-    //   request
-    // };
-    // return res.sendFile(
-    //   join(
-    //     __dirname,
-    //     '..',
-    //     '..',
-    //     '/uploads/93c025131561f69a73e8bad4b5a5a901.jpg',
-    //   ),
-    // );
   }
 }
