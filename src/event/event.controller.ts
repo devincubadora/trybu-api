@@ -37,7 +37,10 @@ export class EventController {
             .fill(null)
             .map(() => Math.round(Math.random() * 16).toString(16))
             .join('');
-          return cb(null, `${randomName}${extname(file.originalname)}`);
+          return cb(
+            null,
+            `${randomName}${extname(file.originalname).toLocaleLowerCase()}`,
+          );
         },
       }),
     }),
@@ -50,18 +53,19 @@ export class EventController {
   ) {
     const user = req.user;
 
-    const { title, startTime, endTime, address, price, contact, description } =
+    const { title, startsAt, endsAt, address, price, contact, description } =
       body;
 
     const event = await this.eventService.create(
       new Event({
         title,
-        picture: file?.path,
-        startTime: new Date(startTime),
-        endTime: endTime ? new Date(endTime) : null,
+        picture: file?.filename,
+        startsAt: new Date(startsAt),
+        endsAt: endsAt ? new Date(endsAt) : null,
         address,
         price,
         contact,
+        status: 'Pendente',
         description,
         authorId: user['sub'],
       }),

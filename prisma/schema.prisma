@@ -29,11 +29,12 @@ model Event {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   picture     String?
-  startTime   DateTime
-  endTime     DateTime?
+  startsAt    DateTime
+  endsAt      DateTime?
   address     String
   price       Float?
   contact     String?
+  status      String?
   description String?
   authorId    String    @map("authorId") @db.ObjectId
   createdAt   DateTime

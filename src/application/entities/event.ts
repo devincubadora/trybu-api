@@ -1,12 +1,14 @@
+type StatusProps = 'Publicado' | 'Pendente' | 'Inactivo';
 export interface EventProps {
   id?: string;
   title: string;
   picture?: string;
-  startTime: Date;
-  endTime: Date;
+  startsAt: Date;
+  endsAt: Date;
   address: string;
   price: number;
   contact: string;
+  status: StatusProps;
   description: string;
   authorId?: string;
   createdAt?: Date;
@@ -39,17 +41,17 @@ export class Event {
   get picture() {
     return this.props.picture;
   }
-  set startTime(startTime: Date) {
-    this.props.startTime = startTime;
+  set startsAt(startsAt: Date) {
+    this.props.startsAt = startsAt;
   }
-  get startTime() {
-    return this.props.startTime;
+  get startsAt() {
+    return this.props.startsAt;
   }
-  set endTime(endTime: Date) {
-    this.props.endTime = endTime;
+  set endsAt(endsAt: Date) {
+    this.props.endsAt = endsAt;
   }
-  get endTime() {
-    return this.props.endTime;
+  get endsAt() {
+    return this.props.endsAt;
   }
   set address(address: string) {
     this.props.address = address;
@@ -68,6 +70,12 @@ export class Event {
   }
   get contact() {
     return this.props.contact;
+  }
+  set status(status: StatusProps) {
+    this.props.status = status;
+  }
+  get status() {
+    return this.props.status;
   }
   set description(description: string) {
     this.props.description = description;

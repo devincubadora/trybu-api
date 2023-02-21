@@ -9,9 +9,9 @@ export class CreateEventBody {
 
   @IsNotEmpty()
   @IsDateString()
-  startTime: Date;
+  startsAt: Date;
 
-  endTime: Date;
+  endsAt: Date;
 
   address: string;
 
