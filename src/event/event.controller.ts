@@ -31,7 +31,7 @@ export class EventController {
   @UseInterceptors(
     FileInterceptor('picture', {
       storage: diskStorage({
-        destination: 'uploads',
+        destination: 'uploads/events',
         filename: (req, file, cb) => {
           const randomName = Array(32)
             .fill(null)
@@ -59,7 +59,7 @@ export class EventController {
     const event = await this.eventService.create(
       new Event({
         title,
-        picture: file?.filename,
+        picture: file?.filename ? 'events/' + file.filename : null,
         startsAt: new Date(startsAt),
         endsAt: endsAt ? new Date(endsAt) : null,
         address,
