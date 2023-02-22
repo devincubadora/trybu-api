@@ -12,7 +12,6 @@ datasource db {
 
 model User {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  // id        Int       @id @default(autoincrement())
   name      String
   username  String?   @unique
   email     String    @unique
@@ -22,7 +21,8 @@ model User {
   createdAt DateTime?
   updatedAt DateTime?
 
-  events Event[]
+  events     Event[]
+  forumPosts ForumPost[]
 }
 
 model Event {
@@ -36,9 +36,22 @@ model Event {
   contact     String?
   status      String?
   description String?
-  authorId    String    @map("authorId") @db.ObjectId
+  authorId    String    @db.ObjectId
   createdAt   DateTime
   updatedAt   DateTime?
 
-  user User @relation(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [id])
+}
+
+model ForumPost {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  picture   String?
+  status    String?
+  content   String?
+  authorId  String    @db.ObjectId
+  createdAt DateTime
+  updatedAt DateTime?
+
+  author User @relation(fields: [authorId], references: [id])
 }
