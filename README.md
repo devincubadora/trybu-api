@@ -1,6 +1,4 @@
-<p align="center">
-Uma API do app da startup TRYBU, que é um espaço de gestão de comunidade de mulheres empreendedoras serviços de suporte a empreendedora.
-</p>
+Uma API do [app mobile](https://github.com/devincubadora/trybu-mobile) da startup TRYBU, que é um espaço de gestão de comunidade de mulheres empreendedoras serviços de suporte a empreendedora.
 
 <br>
 
