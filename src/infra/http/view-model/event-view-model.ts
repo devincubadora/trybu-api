@@ -1,4 +1,5 @@
 import { Event } from 'src/application/entities/event';
+import { UserViewModel } from './user-view-model';
 
 export class EventViewModel {
   static toHTTP(event: Event) {
@@ -14,6 +15,7 @@ export class EventViewModel {
       status: event.status,
       description: event.description,
       authorId: event.authorId,
+      author: UserViewModel.toHTTP(event.author),
     };
   }
 }

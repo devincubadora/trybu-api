@@ -2,6 +2,7 @@ import { User } from 'src/application/entities/user';
 
 export class UserViewModel {
   static toHTTP(user: User) {
+    if (!user) return null;
     return {
       id: user.id,
       name: user.name,

@@ -1,3 +1,5 @@
+import { User } from './user';
+
 type StatusProps = 'Publicado' | 'Pendente' | 'Inactivo';
 export interface EventProps {
   id?: string;
@@ -13,6 +15,7 @@ export interface EventProps {
   authorId?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  author?: User;
 }
 export class Event {
   constructor(private props: EventProps) {
@@ -100,6 +103,13 @@ export class Event {
   }
   get updatedAt() {
     return this.props.updatedAt;
+  }
+
+  set author(autor: User) {
+    this.props.author = autor;
+  }
+  get author() {
+    return this.props.author;
   }
 
   public toJSON() {
