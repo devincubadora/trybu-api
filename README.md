@@ -19,3 +19,7 @@ Esse projecto foi desenvolvido com as seguintes tecnologias:
 - Faça uma copia do arquivo `.env.example` para `.env` na raíz do projecto e preencha corretamente as variáveis `DATABASE_URL` (URL do MongoDB) e `JWT_SECRET` (qualquer caracter para servir de chave para JWT).
 - Execute o comando: `npm run start:dev` para iniciar o servidor
 - Aceder o navegador com o endereço [http://localhost:3000](http://localhost:3000) para ver o resultado
+
+## Documentação/mapeamento dos endpoints
+
+- (Aceder documentação)[https://documenter.getpostman.com/view/13837408/2s93CLttx8]
