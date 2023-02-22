@@ -6,6 +6,7 @@ Uma API do [app mobile](https://github.com/devincubadora/trybu-mobile) da startu
 
 Esse projecto foi desenvolvido com as seguintes tecnologias:
 
+- [Typescript](https://www.typescriptlang.org/)
 - [Nodejs](https://nodejs.org/)
 - [Nestjs framework](https://nestjs.com/)
 - [Prisma ORM](https://www.prisma.io/)
