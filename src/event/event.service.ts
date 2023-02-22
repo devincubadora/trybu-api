@@ -9,7 +9,16 @@ export class EventService {
   async getAll() {
     return await this.prisma.event.findMany({
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
       },
     });
   }
