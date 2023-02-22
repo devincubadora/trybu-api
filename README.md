@@ -1,5 +1,5 @@
 <p align="center">
-Uma API app do startup TRYBU, que é um espaço de gestão de comunidade de mulheres empreendedoras serviços de suporte a empreendedora.
+Uma API do app da startup TRYBU, que é um espaço de gestão de comunidade de mulheres empreendedoras serviços de suporte a empreendedora.
 </p>
 
 <br>
