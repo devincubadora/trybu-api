@@ -22,4 +22,4 @@ Esse projecto foi desenvolvido com as seguintes tecnologias:
 
 ## Documentação/mapeamento dos endpoints
 
-- (Aceder documentação)[https://documenter.getpostman.com/view/13837408/2s93CLttx8]
+- [Aceder documentação](https://documenter.getpostman.com/view/13837408/2s93CLttx8)
