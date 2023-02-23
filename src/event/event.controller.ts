@@ -28,23 +28,23 @@ export class EventController {
     return { events: events.map(EventViewModel.toHTTP) };
   }
 
-  @UseInterceptors(
-    FileInterceptor('picture', {
-      storage: diskStorage({
-        destination: 'uploads/events',
-        filename: (req, file, cb) => {
-          const randomName = Array(32)
-            .fill(null)
-            .map(() => Math.round(Math.random() * 16).toString(16))
-            .join('');
-          return cb(
-            null,
-            `${randomName}${extname(file.originalname).toLocaleLowerCase()}`,
-          );
-        },
-      }),
-    }),
-  )
+  // @UseInterceptors(
+  //   FileInterceptor('picture', {
+  //     storage: diskStorage({
+  //       destination: 'uploads/events',
+  //       filename: (req, file, cb) => {
+  //         const randomName = Array(32)
+  //           .fill(null)
+  //           .map(() => Math.round(Math.random() * 16).toString(16))
+  //           .join('');
+  //         return cb(
+  //           null,
+  //           `${randomName}${extname(file.originalname).toLocaleLowerCase()}`,
+  //         );
+  //       },
+  //     }),
+  //   }),
+  // )
   @Post()
   async create(
     @Req() req: Request,
