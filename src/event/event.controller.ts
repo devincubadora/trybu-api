@@ -13,9 +13,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Request } from 'express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { Event } from 'src/application/entities/event';
-import { CreateEventBody } from 'src/infra/http/dto/create-event-body';
-import { EventViewModel } from 'src/infra/http/view-model/event-view-model';
+import { Event } from '../application/entities/event';
+import { CreateEventBody } from '../infra/http/dto/create-event-body';
+import { EventViewModel } from '../infra/http/view-model/event-view-model';
 import { EventService } from './event.service';
 
 @UseGuards(AuthGuard('jwt'))

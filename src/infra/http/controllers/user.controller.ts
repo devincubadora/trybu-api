@@ -8,14 +8,14 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { CreateUser } from 'src/application/use-cases/users/create-user';
-import { GetUsers } from 'src/application/use-cases/users/get-users';
-import { DeleteUser } from 'src/application/use-cases/users/delete-user';
+import { CreateUser } from '../../../application/use-cases/users/create-user';
+import { GetUsers } from '../../../application/use-cases/users/get-users';
+import { DeleteUser } from '../../../application/use-cases/users/delete-user';
 import { CreateUserBody } from '../dto/create-user-body';
 import { UserViewModel } from '../view-model/user-view-model';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { FindOneUserById } from 'src/application/use-cases/users/find-one-user-by-id';
+import { FindOneUserById } from '../../../application/use-cases/users/find-one-user-by-id';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('users')

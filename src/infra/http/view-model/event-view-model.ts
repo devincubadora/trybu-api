@@ -1,4 +1,4 @@
-import { Event } from 'src/application/entities/event';
+import { Event } from '../../../application/entities/event';
 import { UserViewModel } from './user-view-model';
 
 export class EventViewModel {

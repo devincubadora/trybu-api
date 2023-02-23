@@ -1,7 +1,7 @@
 import { Post, Body } from '@nestjs/common';
 import { BadRequestException, Controller } from '@nestjs/common';
-import { AuthLogin } from 'src/application/use-cases/auth/auth-login';
-import { CreateUser } from 'src/application/use-cases/users/create-user';
+import { AuthLogin } from '../../../application/use-cases/auth/auth-login';
+import { CreateUser } from '../../../application/use-cases/users/create-user';
 import { AuthLoginBody } from '../dto/auth-login-body';
 import { CreateUserBody } from '../dto/create-user-body';
 import { UserViewModel } from '../view-model/user-view-model';

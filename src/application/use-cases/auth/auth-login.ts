@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from 'src/application/entities/user';
-import { Crypto } from 'src/utils/crypto';
+import { User } from '../../entities/user';
+import { Crypto } from '../../../utils/crypto';
 import { FindOneUserByEmail } from '../users/find-one-user-by-email';
 
 interface AuthLoginProps {

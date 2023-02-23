@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { UserRepository } from 'src/application/repositories/user-repository';
+import { UserRepository } from '../../repositories/user-repository';
 
 interface Response {
   result: boolean;

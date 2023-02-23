@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/application/entities/user';
-import { UserRepository } from 'src/application/repositories/user-repository';
-import { CreateUserBody } from 'src/infra/http/dto/create-user-body';
-import { Crypto } from 'src/utils/crypto';
+import { User } from '../../entities/user';
+import { UserRepository } from '../../repositories/user-repository';
+import { CreateUserBody } from '../../../infra/http/dto/create-user-body';
+import { Crypto } from '../../../utils/crypto';
 
 interface CreateUserResponse {
   user: User;

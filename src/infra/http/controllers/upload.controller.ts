@@ -1,6 +1,5 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
 import { Response } from 'express';
-import fs from 'fs';
 import { join } from 'path';
 
 @Controller('uploads')

@@ -1,5 +1,5 @@
 import { Event as RawEvent } from '@prisma/client';
-import { Event } from 'src/application/entities/event';
+import { Event } from '../../../../application/entities/event';
 
 export class PrismaEventMapper {
   static toPrisma(event: Event) {

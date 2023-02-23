@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User as UserRaw } from 'prisma/prisma-client';
-import { User } from 'src/application/entities/user';
-import { UserRepository } from 'src/application/repositories/user-repository';
+import { User } from '../../entities/user';
+import { UserRepository } from '../../repositories/user-repository';
 
 interface CreateUserResponse {
   user: User;
