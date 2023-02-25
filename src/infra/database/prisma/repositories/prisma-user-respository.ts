@@ -1,6 +1,7 @@
 import { Injectable, Param } from '@nestjs/common';
 import { RecordNotFoundError } from 'src/application/use-cases/errors/record-not-found';
 import {
+  CountUsersParams,
   DeletedManyRecodsResponse,
   DeleteManyUserParam,
   DeleteOneUserParam,
@@ -17,13 +18,6 @@ import { PrismaService } from '../prisma.service';
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
   constructor(private prisma: PrismaService) {}
-  async findMany(params?: ManyUsersParams): Promise<User[]> {
-    const users = await this.prisma.user.findMany(params);
-
-    if (!users || users.length < 1) return [];
-
-    return users.map(PrismaUserMapper.toDomain);
-  }
 
   async create(user: User): Promise<User | null> {
     const data = PrismaUserMapper.toPrisma(user);
@@ -44,6 +38,18 @@ export class PrismaUserRepository implements UserRepository {
     if (!user) return null;
 
     return PrismaUserMapper.toDomain(user);
+  }
+
+  async findMany(params?: ManyUsersParams): Promise<User[]> {
+    const users = await this.prisma.user.findMany(params);
+
+    if (!users || users.length < 1) return [];
+
+    return users.map(PrismaUserMapper.toDomain);
+  }
+
+  async count(params?: CountUsersParams): Promise<number> {
+    return await this.prisma.user.count(params);
   }
 
   async update(param: UpdateUserParam): Promise<User | null> {
