@@ -19,7 +19,6 @@ import { UsersContoller } from './controllers/user.controller';
     DeleteUser,
     AuthLogin,
     FindOneUser,
-    FindOneUser,
     JwtService,
     AtStarategy,
   ],
