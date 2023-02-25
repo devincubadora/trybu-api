@@ -1,5 +1,5 @@
 import { Post, Body } from '@nestjs/common';
-import { BadRequestException, Controller } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AuthLogin } from '../../../application/use-cases/auth/auth-login';
 import { CreateUser } from '../../../application/use-cases/users/create-user';
 import { AuthLoginBody } from '../dto/auth-login-body';
@@ -16,18 +16,12 @@ export class AuthController {
 
     const user = await this.authLogin.validateUser({ email, password });
 
-    if (!user) {
-      throw new BadRequestException('Invalid credencials');
-    }
-
     const { access_token } = await this.authLogin.getToken(user);
     return { access_token };
   }
 
   @Post('signup')
   async signup(@Body() body: CreateUserBody) {
-    console.log('body', body);
-
     const { name, username, email, password, phone, whatsapp } = body;
 
     const { user } = await this.createUser.execute({
