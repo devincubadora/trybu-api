@@ -65,8 +65,6 @@ export class CreateUser {
         response.message = 'Este whatsapp já está registado.';
       } else if (username == user.username) {
         response.message = 'Este nome de usuário já está registado.';
-      } else {
-        console.log('user notf else', user);
       }
     }
     return response;

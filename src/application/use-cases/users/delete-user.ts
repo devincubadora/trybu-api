@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OneUserParam } from 'src/types';
+import { OneUserParam } from 'src/@types';
 
 import { UserRepository } from '../../repositories/user-repository';
 import { RecordNotFoundError } from '../errors';
