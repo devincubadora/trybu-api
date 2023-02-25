@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ManyUsersParams } from 'src/types/users-params';
 import { User } from '../../entities/user';
 import { UserRepository } from '../../repositories/user-repository';
 
@@ -7,10 +8,10 @@ interface CreateUserResponse {
 }
 
 @Injectable()
-export class GetUsers {
+export class FindManyUsers {
   constructor(private userRepository: UserRepository) {}
-  async execute(): Promise<CreateUserResponse> {
-    const users = await this.userRepository.getAll();
+  async execute(params?: ManyUsersParams): Promise<CreateUserResponse> {
+    const users = await this.userRepository.findMany(params);
 
     return { users };
   }
