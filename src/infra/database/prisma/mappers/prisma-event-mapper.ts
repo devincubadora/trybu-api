@@ -32,6 +32,7 @@ export class PrismaEventMapper {
       status: raw.status as any,
       description: raw.description,
       authorId: raw.authorId,
+      author: (raw as any)?.author,
       createdAt: raw.createdAt,
       updatedAt: raw.updatedAt,
     });
