@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User as UserRaw } from 'prisma/prisma-client';
+import { Prisma } from '@prisma/client';
 import { User } from '../../entities/user';
 import { UserRepository } from '../../repositories/user-repository';
 
@@ -8,10 +8,10 @@ interface CreateUserResponse {
 }
 
 @Injectable()
-export class FindOneUserByEmail {
+export class FindOneUser {
   constructor(private userRepository: UserRepository) {}
-  async execute(email: string): Promise<UserRaw> {
-    const user = await this.userRepository.findByEmail(email);
+  async execute(param: Prisma.UserWhereUniqueInput): Promise<User> {
+    const user = await this.userRepository.findOne(param);
 
     return user;
   }
