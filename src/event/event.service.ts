@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ManyEventsParams } from 'src/@types/event';
 import { Event } from '../application/entities/event';
 import { PrismaEventMapper } from '../infra/database/prisma/mappers/prisma-event-mapper';
 import { PrismaService } from '../infra/database/prisma/prisma.service';
@@ -6,26 +7,19 @@ import { PrismaService } from '../infra/database/prisma/prisma.service';
 @Injectable()
 export class EventService {
   constructor(private prisma: PrismaService) {}
-  async getAll() {
-    return await this.prisma.event.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        author: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
-      },
-    });
+
+  async findMany(params?: ManyEventsParams) {
+    const events = await this.prisma.event.findMany(params);
+    if (!events || events.length < 1) return [];
+
+    return events.map(PrismaEventMapper.toDomain);
   }
 
   async create(event: Event) {
-    await this.prisma.event.create({
+    const newEvent = await this.prisma.event.create({
       data: PrismaEventMapper.toPrisma(event),
     });
+
+    return PrismaEventMapper.toDomain(newEvent);
   }
 }
