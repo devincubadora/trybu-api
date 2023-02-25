@@ -8,7 +8,7 @@ import {
   ManyUsersParams,
   OneUserParam,
   UpdateUserParam,
-} from 'src/types';
+} from 'src/@types';
 
 import { User } from '../../../../application/entities/user';
 import { UserRepository } from '../../../../application/repositories/user-repository';
