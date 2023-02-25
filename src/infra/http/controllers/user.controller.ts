@@ -16,7 +16,7 @@ import { UserViewModel } from '../view-model/user-view-model';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { FindOneUser } from '../../../application/use-cases/users/find-one-user';
-import { User } from 'src/application/entities/user';
+import { User } from '../../../application/entities/user';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('users')

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { EventService } from 'src/event/event.service';
-import { PrismaEventMapper } from 'src/infra/database/prisma/mappers/prisma-event-mapper';
+import { EventService } from '../../../event/event.service';
+import { PrismaEventMapper } from '../../../infra/database/prisma/mappers/prisma-event-mapper';
 import { Event } from '../../entities/event';
 import { RecordAlreadyExistsError } from '../errors';
 

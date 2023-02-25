@@ -1,5 +1,5 @@
 import { Injectable, Param } from '@nestjs/common';
-import { RecordNotFoundError } from 'src/application/use-cases/errors/record-not-found';
+import { RecordNotFoundError } from '../../../../application/use-cases/errors/record-not-found';
 import {
   CountUsersParams,
   DeletedManyRecodsResponse,
@@ -8,7 +8,7 @@ import {
   ManyUsersParams,
   OneUserParam,
   UpdateUserParam,
-} from 'src/@types';
+} from '../../../../@types';
 
 import { User } from '../../../../application/entities/user';
 import { UserRepository } from '../../../../application/repositories/user-repository';

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ManyEventsParams } from 'src/@types/event';
+import { ManyEventsParams } from '../@types/event';
 import { Event } from '../application/entities/event';
 import { PrismaEventMapper } from '../infra/database/prisma/mappers/prisma-event-mapper';
 import { PrismaService } from '../infra/database/prisma/prisma.service';

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ManyUsersParams } from 'src/@types/users-params';
+import { ManyUsersParams } from '../../../@types/users-params';
 import { User } from '../../entities/user';
 import { UserRepository } from '../../repositories/user-repository';
 

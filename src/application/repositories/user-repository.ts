@@ -6,7 +6,7 @@ import {
   ManyUsersParams,
   OneUserParam,
   UpdateUserParam,
-} from 'src/@types';
+} from '../../@types';
 import { User } from '../entities/user';
 
 export abstract class UserRepository {

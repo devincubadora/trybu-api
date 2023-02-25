@@ -6,8 +6,8 @@ import {
   ValidateIf,
   Matches,
 } from 'class-validator';
-import { Event } from 'src/application/entities/event';
-import { RegExUtils } from 'src/utils/reg-ex-utils';
+import { Event } from '../../../application/entities/event';
+import { RegExUtils } from '../../../utils/reg-ex-utils';
 
 export class CreateEventBody {
   @MinLength(5, {

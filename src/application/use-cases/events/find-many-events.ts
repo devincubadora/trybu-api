@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ManyEventsParams } from 'src/@types/event';
-import { EventService } from 'src/event/event.service';
+import { ManyEventsParams } from '../../../@types/event';
+import { EventService } from '../../../event/event.service';
 import { Event } from '../../entities/event';
 
 interface CreateEventResponse {

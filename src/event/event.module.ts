@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { CreateEvent } from 'src/application/use-cases/events/create-event';
-import { FindManyEvents } from 'src/application/use-cases/events/find-many-events';
+import { CreateEvent } from '../application/use-cases/events/create-event';
+import { FindManyEvents } from '../application/use-cases/events/find-many-events';
 import { DatabaseModule } from '../infra/database/database.module';
 import { PrismaService } from '../infra/database/prisma/prisma.service';
 import { EventController } from './event.controller';
