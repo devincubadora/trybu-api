@@ -28,7 +28,7 @@ export class User {
   }
 
   public set name(name: string) {
-    this.props.name = name;
+    this.props.name = name.trim();
   }
 
   public get name() {
@@ -36,7 +36,7 @@ export class User {
   }
 
   public set username(username: string) {
-    this.props.username = username;
+    this.props.username = username.trim();
   }
 
   public get username() {
@@ -44,7 +44,7 @@ export class User {
   }
 
   public set email(email: string) {
-    this.props.email = email;
+    this.props.email = email.trim().toLowerCase();
   }
 
   public get email() {
@@ -52,7 +52,7 @@ export class User {
   }
 
   public set phone(phone: string) {
-    this.props.phone = phone;
+    this.props.phone = phone.trim();
   }
 
   public get phone() {
@@ -60,7 +60,7 @@ export class User {
   }
 
   public set whatsapp(whatsapp: string) {
-    this.props.whatsapp = whatsapp;
+    this.props.whatsapp = whatsapp.trim();
   }
 
   public get whatsapp() {
@@ -68,7 +68,7 @@ export class User {
   }
 
   public set password(password: string) {
-    this.props.password = password;
+    this.props.password = password.trim();
   }
 
   public get password() {
