@@ -6,9 +6,9 @@ export interface EventProps {
   title: string;
   picture?: string;
   startsAt: Date;
-  endsAt: Date;
+  endsAt?: Date;
   address: string;
-  price: number;
+  price?: number;
   contact: string;
   status: StatusProps;
   description: string;
