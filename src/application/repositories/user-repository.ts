@@ -1,11 +1,20 @@
-import { User as RawUser } from '@prisma/client';
+import {
+  DeletedManyRecodsResponse,
+  DeleteManyUserParam,
+  DeleteOneUserParam,
+  ManyUsersParams,
+  OneUserParam,
+  UpdateUserParam,
+} from 'src/types';
 import { User } from '../entities/user';
 
 export abstract class UserRepository {
-  abstract create(user: User): Promise<RawUser>;
-  abstract findById(userId: string): Promise<User>;
-  abstract findByEmail(email: string): Promise<User>;
-  abstract getAll(): Promise<User[]>;
-  abstract update(user: User): Promise<User>;
-  abstract deleteBYId(userId: string): Promise<void>;
+  abstract create(user: User): Promise<User | null>;
+  abstract findOne(param: OneUserParam): Promise<User | null>;
+  abstract findMany(params?: ManyUsersParams): Promise<User[]>;
+  abstract update(params: UpdateUserParam): Promise<User | null>;
+  abstract delete(param: DeleteOneUserParam): Promise<User>;
+  abstract deleteMany(
+    param: DeleteManyUserParam,
+  ): Promise<DeletedManyRecodsResponse>;
 }

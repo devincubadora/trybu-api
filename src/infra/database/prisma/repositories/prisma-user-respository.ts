@@ -1,5 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { User as RawUser } from '@prisma/client';
+import { Injectable, Param } from '@nestjs/common';
+import { RecordNotFoundError } from 'src/application/use-cases/errors/record-not-found';
+import {
+  DeletedManyRecodsResponse,
+  DeleteManyUserParam,
+  DeleteOneUserParam,
+  ManyUsersParams,
+  OneUserParam,
+  UpdateUserParam,
+} from 'src/types';
 
 import { User } from '../../../../application/entities/user';
 import { UserRepository } from '../../../../application/repositories/user-repository';
@@ -9,52 +17,58 @@ import { PrismaService } from '../prisma.service';
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
   constructor(private prisma: PrismaService) {}
+  async findMany(params?: ManyUsersParams): Promise<User[]> {
+    const users = await this.prisma.user.findMany(params);
 
-  async create(user: User): Promise<RawUser> {
+    if (!users || users.length < 1) return [];
+
+    return users.map(PrismaUserMapper.toDomain);
+  }
+
+  async create(user: User): Promise<User | null> {
     const data = PrismaUserMapper.toPrisma(user);
 
     const userData = await this.prisma.user.create({
       data,
     });
-    // console.log('userData', userData);
-    return userData;
+
+    if (!userData) return null;
+
+    return PrismaUserMapper.toDomain(userData);
   }
 
-  async findById(userId: string): Promise<User> {
+  async findOne(param: OneUserParam): Promise<User | null> {
     const user = await this.prisma.user.findUnique({
-      where: {
-        id: userId,
-      },
+      where: param,
     });
+    if (!user) return null;
 
-    return new User(user).toJSON() as User;
+    return PrismaUserMapper.toDomain(user);
   }
 
-  async findByEmail(email: string): Promise<User | null> {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
-    return user ? (new User(user).toJSON() as User) : null;
-  }
-
-  async getAll(): Promise<User[]> {
-    const users = await this.prisma.user.findMany({
-      orderBy: { createdAt: 'asc' },
+  async update(param: UpdateUserParam): Promise<User | null> {
+    const user = await this.prisma.user.update({
+      data: param.data,
+      where: param.where,
     });
 
-    return users.map(PrismaUserMapper.toDomain);
+    return PrismaUserMapper.toDomain(user);
   }
 
-  update(user: User): Promise<User> {
-    throw new Error('Method not implemented.');
-  }
-
-  async deleteBYId(userId: string): Promise<void> {
-    const deleted = await this.prisma.user.delete({
-      where: { id: userId },
+  async delete(param: DeleteOneUserParam): Promise<User> {
+    const deletedUser = await this.prisma.user.delete({
+      where: param,
     });
-    console.log('deleted', deleted);
+    return PrismaUserMapper.toDomain(deletedUser);
+  }
+
+  async deleteMany(
+    param: DeleteManyUserParam,
+  ): Promise<DeletedManyRecodsResponse> {
+    const response = await this.prisma.user.deleteMany({
+      where: param,
+    });
+
+    return response;
   }
 }
