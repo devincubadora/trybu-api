@@ -33,9 +33,12 @@ export class CreateEventBody {
   @IsNotEmpty({ message: 'Informe o endereço do evento.' })
   address: string;
 
-  @IsDateString(null, {
-    message: 'A date de fim precisa ser um formato válido.',
-  })
+  @IsDateString(
+    {},
+    {
+      message: 'A date de fim precisa ser um formato válido.',
+    },
+  )
   @ValidateIf(
     (event: Event) => event.endsAt !== undefined && event.endsAt !== null,
   )
