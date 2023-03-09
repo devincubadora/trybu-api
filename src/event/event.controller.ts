@@ -27,6 +27,24 @@ export class EventController {
     private findMany: FindManyEvents,
   ) {}
 
+  /*   @UseInterceptors(
+    FileInterceptor('picture', {
+      storage: diskStorage({
+        destination: 'uploads/events',
+        filename: (req, file, cb) => {
+          const randomName = Array(32)
+            .fill(null)
+            .map(() => Math.round(Math.random() * 16).toString(16))
+            .join('');
+          return cb(
+            null,
+            `${randomName}${extname(file.originalname).toLocaleLowerCase()}`,
+          );
+        },
+      }),
+    }),
+  ) */
+  // @UseInterceptors(FileInterceptor('picture'))
   @Post()
   async create(
     @Req() req: Request,
@@ -37,11 +55,13 @@ export class EventController {
 
     const { title, startsAt, endsAt, address, price, contact, description } =
       body;
+    // return { file: file.buffer.toString() };
 
     const { event } = await this.createEvent.execute(
       new Event({
         title,
-        picture: file?.filename ? 'events/' + file.filename : null,
+        // picture: file?.filename ? 'events/' + file.filename : null,
+        // picture: file ? file.buffer.toString() : null,
         startsAt: new Date(startsAt),
         endsAt: endsAt ? new Date(endsAt) : null,
         address,
@@ -55,23 +75,6 @@ export class EventController {
     return { event: EventViewModel.toHTTP(event) };
   }
 
-  // @UseInterceptors(
-  //   FileInterceptor('picture', {
-  //     storage: diskStorage({
-  //       destination: 'uploads/events',
-  //       filename: (req, file, cb) => {
-  //         const randomName = Array(32)
-  //           .fill(null)
-  //           .map(() => Math.round(Math.random() * 16).toString(16))
-  //           .join('');
-  //         return cb(
-  //           null,
-  //           `${randomName}${extname(file.originalname).toLocaleLowerCase()}`,
-  //         );
-  //       },
-  //     }),
-  //   }),
-  // )
   @Get()
   async index() {
     const { events } = await this.findMany.execute({
